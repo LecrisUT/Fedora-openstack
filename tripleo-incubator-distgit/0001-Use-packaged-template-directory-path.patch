@@ -1,0 +1,51 @@
+From 02e29e249d11fb889b1dfd0b03d0af82059d4984 Mon Sep 17 00:00:00 2001
+From: Javier Pena <jpena@redhat.com>
+Date: Tue, 30 Jun 2015 12:31:50 +0200
+Subject: [PATCH] Use packaged template directory
+
+---
+ scripts/configure-vm  | 5 +----
+ scripts/setup-network | 6 ++++--
+ 2 files changed, 5 insertions(+), 6 deletions(-)
+
+diff --git a/scripts/configure-vm b/scripts/configure-vm
+index 9b26461..66151e3 100755
+--- a/scripts/configure-vm
++++ b/scripts/configure-vm
+@@ -7,10 +7,7 @@ import random
+ 
+ import libvirt
+ 
+-templatedir = os.path.join(
+-                os.path.dirname(
+-                  os.path.dirname(
+-                    os.path.abspath(__file__))), 'templates')
++templatedir="/usr/share/tripleo/templates"
+ 
+ MAX_NUM_MACS = math.trunc(0xff/2)
+ 
+diff --git a/scripts/setup-network b/scripts/setup-network
+index 41e6c43..599a496 100755
+--- a/scripts/setup-network
++++ b/scripts/setup-network
+@@ -1,5 +1,7 @@
+ #!/bin/bash
+-set -eu
++set -eux
++
++template_dir="/usr/share/tripleo/templates"
+ 
+ BASE=$(dirname $0)/../
+ BRIDGE_SUFFIX=${1:-''} # support positional arg for legacy support
+@@ -50,7 +52,7 @@ function create_bridge {
+     (virsh net-list --persistent | grep "${BRIDGE_NAME} ") && virsh net-destroy ${BRIDGE_NAME}
+     (virsh net-list --inactive --persistent | grep "${BRIDGE_NAME} ") && virsh net-undefine ${BRIDGE_NAME}
+ 
+-    virsh net-define <(sed -e "s/%NETWORK_NAME%/$BRIDGE_NAME/"  $BASE/templates/net.xml)
++    virsh net-define <(sed -e "s/%NETWORK_NAME%/$BRIDGE_NAME/"  $template_dir/net.xml)
+     virsh net-autostart ${BRIDGE_NAME}
+     virsh net-start ${BRIDGE_NAME}
+ 
+-- 
+2.1.0
+

@@ -1,0 +1,15 @@
+[Unit]
+Description=OpenStack Tacker Conductor
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=tacker
+ExecStart=/usr/bin/tacker-conductor --config-file /etc/tacker/tacker.conf --log-file /var/log/tacker/tacker-conductor.log
+PrivateTmp=true
+NotifyAccess=all
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

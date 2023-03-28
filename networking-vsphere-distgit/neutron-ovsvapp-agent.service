@@ -1,0 +1,15 @@
+[Unit]
+Description=OpenStack Neutron OVSVapp Agent
+After=syslog.target network.target network.service openvswitch.service
+PartOf=network.service
+Requires=openvswitch.service
+
+[Service]
+Type=simple
+User=neutron
+ExecStart=/usr/bin/neutron-ovsvapp-agent --config-file /usr/share/neutron/neutron-dist.conf --config-file /etc/neutron/neutron.conf  --config-file /etc/neutron/plugins/ml2/ovsvapp_agent.ini --config-dir /etc/neutron/conf.d/common --log-file /var/log/neutron/ovsvapp-agent.log
+PrivateTmp=true
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

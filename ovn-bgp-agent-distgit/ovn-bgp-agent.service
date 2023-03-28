@@ -1,0 +1,16 @@
+[Unit]
+Description=OVN BGP Agent
+After=syslog.target network.target openvswitch.service frr.service
+Requires=openvswitch.service frr.service
+
+[Service]
+Type=simple
+User=ovn-bgp
+PermissionsStartOnly=true
+ExecStart=/usr/bin/ovn-bgp-agent --config-dir /etc/ovn-bgp-agent
+PrivateTmp=false
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

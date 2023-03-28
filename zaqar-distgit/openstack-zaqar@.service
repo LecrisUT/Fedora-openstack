@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenStack Message Queuing Service (code-named Zaqar) Server Instance %I
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=zaqar
+ExecStart=/usr/bin/zaqar-server --config-file /etc/zaqar/zaqar.conf --config-file /etc/zaqar/%i.conf
+PrivateTmp=true
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

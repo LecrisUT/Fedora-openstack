@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenStack Alarm API service
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=aodh
+ExecStart=/usr/bin/aodh-api -- --logfile /var/log/aodh/api.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

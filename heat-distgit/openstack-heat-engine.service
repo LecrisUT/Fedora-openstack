@@ -1,0 +1,13 @@
+[Unit]
+Description=Openstack Heat Engine Service
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=heat
+ExecStart=/usr/bin/heat-engine --config-file /usr/share/heat/heat-dist.conf --config-file /etc/heat/heat.conf
+Restart=on-failure
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=Glare Server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=glare
+ExecStart=/usr/bin/glare-api --config-file=/etc/glare/glare.conf --log-file /var/log/glare/api.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

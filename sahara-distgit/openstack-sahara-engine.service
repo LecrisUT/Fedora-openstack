@@ -1,0 +1,12 @@
+[Unit]
+Description=Sahara Engine Server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=sahara
+ExecStart=/usr/bin/sahara-engine --config-file /etc/sahara/sahara.conf
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

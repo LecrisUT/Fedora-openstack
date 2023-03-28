@@ -1,0 +1,4 @@
+Defaults:ovn-bgp !requiretty
+
+ovn-bgp ALL = (root) NOPASSWD: /usr/bin/ovn-bgp-agent-rootwrap /etc/ovn-bgp-agent/rootwrap.conf *
+ovn-bgp ALL = (root) NOPASSWD: /usr/bin/ovn-bgp-agent-rootwrap-daemon /etc/ovn-bgp-agent/rootwrap.conf

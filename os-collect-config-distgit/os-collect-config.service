@@ -1,0 +1,14 @@
+[Unit]
+Description=Collect metadata and run hook commands.
+After=cloud-final.service
+Before=crond.service
+
+[Service]
+ExecStart=/usr/bin/os-collect-config
+Restart=on-failure
+RestartForceExitStatus=SIGPIPE
+KillMode=process
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+packages:
+  ansible-collections-openstack:
+    specfile_path: ansible-collections-openstack/ansible-collections-openstack.spec
+    paths: [ ansible-collections-openstack ]
+    files_to_sync:
+      - ansible-collections-openstack/ansible-collections-openstack.spec
+    upstream_package_name: ansible-collections-openstack.cloud
+    downstream_package_name: ansible-collections-openstack
+
+jobs:
+  - job: copr_build
+    trigger: commit
+    owner: lecris
+    project: openstack
+    targets:
+      - fedora-development-x86_64
+      - fedora-latest-x86_64
+      - fedora-development-aarch64
+      - fedora-latest-aarch64
+      - epel-9-x86_64
+      - epel-9-aarch64

@@ -1,2 +1,3 @@
 - name: ansible-collections-openstack
 - name: ansible-config_template
+- name: ansible-pacemaker

@@ -9,6 +9,16 @@ packages:
     actions:
       create-archive:
         - "../get_archive.sh ./ansible-collections-openstack.spec"
+  ansible-role-atos-hsm:
+    specfile_path: ansible-role-atos-hsm.spec
+    paths: [ ansible-role-atos-hsm ]
+    files_to_sync:
+      - ansible-role-atos-hsm.spec
+    upstream_package_name: ansible_role_atos_hsm
+    downstream_package_name: ansible-role-atos-hsm
+    actions:
+      create-archive:
+        - "../get_archive.sh ./ansible-role-atos-hsm.spec"
 
 jobs:
   - job: copr_build

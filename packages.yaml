@@ -1,1 +1,2 @@
 - name: ansible-collections-openstack
+- name: openstacksdk

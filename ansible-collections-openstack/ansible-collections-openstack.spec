@@ -21,7 +21,7 @@ Requires:       python3-openstacksdk >= 0.13.0
 Openstack Ansible collections
 
 %prep
-%autosetup -n %{srcname}-%{version}
+%autosetup -n %{srcname}-%{version} -S git
 %generate_buildrequires
 %pyproject_buildrequires
 

@@ -22,6 +22,8 @@ Openstack Ansible collections
 
 %prep
 %autosetup -n %{srcname}-%{version} -S git
+# Make dummy src to silence ambiguous package
+mkdir src
 %generate_buildrequires
 %pyproject_buildrequires
 

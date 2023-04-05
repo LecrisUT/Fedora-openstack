@@ -25,7 +25,7 @@ Openstack Ansible collections
 # Make dummy src to silence ambiguous package
 mkdir src
 %generate_buildrequires
-%pyproject_buildrequires
+%pyproject_buildrequires -R
 
 %build
 %pyproject_wheel

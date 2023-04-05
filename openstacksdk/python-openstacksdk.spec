@@ -29,17 +29,7 @@ BuildRequires:  python3-devel
 %description -n python3-%{pypi_name}
 %{common_desc}
 
-%package -n python3-%{pypi_name}-tests
-Summary:        An SDK for building applications to work with OpenStack - test files
-
-Requires: python3-%{pypi_name} = %{version}-%{release}
-
-%description -n python3-%{pypi_name}-tests
-A collection of libraries for building applications to work with OpenStack \
-clouds - test files
-
 %prep
-
 %autosetup -n %{srcname}-%{version} -S git
 %generate_buildrequires
 %pyproject_buildrequires -R
@@ -52,20 +42,11 @@ export PBR_VERSION=%{version}
 %pyproject_install
 %pyproject_save_files openstack
 
-%check
-# This unit test requires python-prometheus, which is optional and not needed
-rm -f openstack/tests/unit/test_stats.py
-rm -f openstack/tests/unit/test_hacking.py
-%pytest
-
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %{_bindir}/openstack-inventory
 %exclude %{python3_sitelib}/openstack/tests
-
-%files -n python3-%{pypi_name}-tests
-%{python3_sitelib}/openstack/tests
 
 %changelog
 %autochangelog

@@ -1,5 +1,5 @@
 %global pypi_name ansible-collections-openstack.cloud
-%global srcname %{pypi_name}
+%global srcname %{name}
 
 Name:           ansible-collections-openstack
 Version:        2.0.0
@@ -7,7 +7,7 @@ Release:        %autorelease
 Summary:        Openstack Ansible collections
 License:        GPLv3+
 URL:            https://opendev.org/openstack/%{name}
-Source0:        https://galaxy.ansible.com/download/openstack-cloud-%{version}.tar.gz
+Source0:        https://github.com/openstack/%{name}/archive/%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  git-core
@@ -21,9 +21,11 @@ Requires:       python3-openstacksdk >= 0.13.0
 Openstack Ansible collections
 
 %prep
-%autosetup -n %{srcname}-%{version}
+%autosetup -n %{srcname}-%{version} -S git
+# Make dummy src to silence ambiguous package
+mkdir src
 %generate_buildrequires
-%pyproject_buildrequires
+%pyproject_buildrequires -R
 
 %build
 %pyproject_wheel

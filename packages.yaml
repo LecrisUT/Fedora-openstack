@@ -1,1 +1,3 @@
 - name: ansible-collections-openstack
+- name: ansible-role-atos-hsm
+- name: ansible-role-chrony
